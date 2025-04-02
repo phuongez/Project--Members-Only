@@ -1,5 +1,6 @@
 import { Router } from "express"
 import { body, validationResult, matchedData } from "express-validator"
+import { User } from "../schemas/user.js"
 
 export const router = new Router()
 
@@ -19,7 +20,7 @@ router.post('/signup',
     [
         body('fullname')
             .notEmpty().withMessage('Must not be empty')
-            .isAlpha()
+            .isAlpha('en-US', { ignore: ' ' })
             .withMessage("Name must only contain alphabet letters."),
         body('email')
             .notEmpty().withMessage('Must not be empty')
@@ -33,11 +34,20 @@ router.post('/signup',
                 return value === req.body.password;
             }).withMessage("Does not match password"),
     ],
-    (req, res) => {
+    async (req, res) => {
         const result = validationResult(req)
-        if (!result.isEmpty) {
+        if (!result.isEmpty()) {
             return res.status(400).send({ errors: result.array() })
         }
-        const data = matchedData(req)
+        const { fullname, email, password } = matchedData(req)
         //DO something
+        const isAdmin = req.body.admin ? true : false
+        const newUser = new User({ fullname, email, password, admin: isAdmin })
+        try {
+            const savedUser = await newUser.save()
+            return res.status(201).send(savedUser)
+        } catch (error) {
+            console.log(error);
+            return res.sendStatus(400)
+        }
     })

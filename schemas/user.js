@@ -5,6 +5,6 @@ const userSchema = new mongoose.Schema({
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true },
     admin: { type: Boolean }
-}, { timestamps: true })
+})
 
-export const Person = mongoose.model("Users", userSchema)
+export const User = mongoose.model("User", userSchema)
