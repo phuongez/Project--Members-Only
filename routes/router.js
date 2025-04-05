@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { body, validationResult, matchedData } from "express-validator"
 import { User } from "../schemas/user.js"
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs";
 import "../config/local-strategy.js"
 import passport from "passport"
 import { Message } from "../schemas/message.js"
