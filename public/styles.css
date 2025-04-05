@@ -1,0 +1,66 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Montserrat", sans-serif;
+    border: none;
+}
+
+nav {
+    padding: 0em 0em 2em;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li {
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: .5em 1em;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    padding: 1em 4em;
+}
+
+.join-club-form #passcode {
+    border: 1px solid black;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+.join-club-form button,
+.create-message button,
+.delete-form button {
+    color: white;
+    background-color: #E20612;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.create-message input,
+.create-message textarea {
+    border: 1px solid black;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+.message-box {
+    border: solid 1px black;
+    border-radius: 12px;
+    padding: 1em 2em;
+    margin-block: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
